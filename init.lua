@@ -166,6 +166,11 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+vim.opt.tabstop = 4 -- Number of visual spaces per tab
+-- vim.opt.softtabstop = 4    -- Number of spaces inserted when hitting tab.
+-- vim.opt.shiftwidth = 4     -- Number of spaces to use for auto-indent.
+-- vim.opt.expandtab = true   -- Use spaces instead of tabs.
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -407,11 +412,17 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            anchor = 'S',
+            width = 0.9,
+            height = 0.9,
+          },
+          --   mappings = {
+          --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          --   },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -885,29 +896,51 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
-
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   'folke/tokyonight.nvim',
+  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   config = function()
+  --     ---@diagnostic disable-next-line: missing-fields
+  --     require('tokyonight').setup {
+  --       styles = {
+  --         comments = { italic = false }, -- Disable italics in comments
+  --       },
+  --     }
+  --
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     -- vim.cmd.colorscheme 'tokyonight-night'
+  --     -- vim.cmd.colorscheme 'darkblue'
+  --     vim.cmd.colorscheme 'desert'
+  --   end,
+  -- },
+  -- {
+  --   'marcinjahn/gemini-cli.nvim',
+  --   cmd = 'Gemini',
+  --   -- Example key mappings for common actions:
+  --   keys = {
+  --     { '<leader>a/', '<cmd>Gemini toggle<cr>', desc = 'Toggle Gemini CLI' },
+  --     { '<leader>aa', '<cmd>Gemini ask<cr>', desc = 'Ask Gemini', mode = { 'n', 'v' } },
+  --     { '<leader>af', '<cmd>Gemini add_file<cr>', desc = 'Add File' },
+  --   },
+  --   dependencies = {
+  --     'folke/snacks.nvim',
+  --   },
+  --   config = true,
+  -- },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
