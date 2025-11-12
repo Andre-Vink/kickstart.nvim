@@ -224,6 +224,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Configure how a floating windows is displayed.
+-- -- This is a 'group' for our autocommands
+-- local my_highlight_group = vim.api.nvim_create_augroup('MyCustomHighlights', { clear = true })
+--
+-- -- We create an autocommand that will run on the 'ColorScheme' event.
+-- -- This ensures our settings are applied AFTER the colorscheme is loaded.
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   pattern = '*',
+--   group = my_highlight_group,
+--   callback = function()
+--     -- Link the float background to the completion menu background
+--     -- This is the most common way to make them look consistent.
+--     vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Pmenu' })
+--
+--     -- You can also make the border stand out.
+--     -- Let's link it to the color used for 'Info' diagnostics
+--     --vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'DiagnosticSignInfo' })
+--     vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#00aaff' })
+--   end,
+-- })
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
