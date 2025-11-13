@@ -171,6 +171,8 @@ vim.opt.tabstop = 4 -- Number of visual spaces per tab
 -- vim.opt.shiftwidth = 4     -- Number of spaces to use for auto-indent.
 -- vim.opt.expandtab = true   -- Use spaces instead of tabs.
 
+vim.o.winborder = 'rounded'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -223,27 +225,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
-
--- Configure how a floating windows is displayed.
--- -- This is a 'group' for our autocommands
--- local my_highlight_group = vim.api.nvim_create_augroup('MyCustomHighlights', { clear = true })
---
--- -- We create an autocommand that will run on the 'ColorScheme' event.
--- -- This ensures our settings are applied AFTER the colorscheme is loaded.
--- vim.api.nvim_create_autocmd('ColorScheme', {
---   pattern = '*',
---   group = my_highlight_group,
---   callback = function()
---     -- Link the float background to the completion menu background
---     -- This is the most common way to make them look consistent.
---     vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Pmenu' })
---
---     -- You can also make the border stand out.
---     -- Let's link it to the color used for 'Info' diagnostics
---     --vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'DiagnosticSignInfo' })
---     vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#00aaff' })
---   end,
--- })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -925,43 +906,7 @@ require('lazy').setup({
       vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
-  -- { -- You can easily change to a different colorscheme.
-  --   -- Change the name of the colorscheme plugin below, and then
-  --   -- change the command in the config to whatever the name of that colorscheme is.
-  --   --
-  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  --   'folke/tokyonight.nvim',
-  --   priority = 1000, -- Make sure to load this before all the other start plugins.
-  --   config = function()
-  --     ---@diagnostic disable-next-line: missing-fields
-  --     require('tokyonight').setup {
-  --       styles = {
-  --         comments = { italic = false }, -- Disable italics in comments
-  --       },
-  --     }
-  --
-  --     -- Load the colorscheme here.
-  --     -- Like many other themes, this one has different styles, and you could load
-  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  --     -- vim.cmd.colorscheme 'tokyonight-night'
-  --     -- vim.cmd.colorscheme 'darkblue'
-  --     vim.cmd.colorscheme 'desert'
-  --   end,
-  -- },
-  -- {
-  --   'marcinjahn/gemini-cli.nvim',
-  --   cmd = 'Gemini',
-  --   -- Example key mappings for common actions:
-  --   keys = {
-  --     { '<leader>a/', '<cmd>Gemini toggle<cr>', desc = 'Toggle Gemini CLI' },
-  --     { '<leader>aa', '<cmd>Gemini ask<cr>', desc = 'Ask Gemini', mode = { 'n', 'v' } },
-  --     { '<leader>af', '<cmd>Gemini add_file<cr>', desc = 'Add File' },
-  --   },
-  --   dependencies = {
-  --     'folke/snacks.nvim',
-  --   },
-  --   config = true,
-  -- },
+
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
